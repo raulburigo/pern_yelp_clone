@@ -1,0 +1,94 @@
+<html ng-app="yelpClone" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.8.0/angular-locale_pt-br.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="app.js"></script>
+    <title>Yelp - AngularJS</title>
+    
+</head>
+<body class="html" ng-controller="yelpCloneCtrl">
+    <div ng-include="'navbar.html'"></div>
+    <div class="container">
+        <div class="my-3 text-center">
+            <h1 class="font-weight-light display-3">Restaurant Finder</h1>
+        </div>
+        <div class="mb-4">
+            <form ng-submit="handleSubmitBtn(newRestaurant)" name="newRestaurantForm">
+                <div class="form-row mx-auto">
+                    <div class="col">
+                        <input
+                            class="form-control"
+                            type="text"
+                            placeholder="name"
+                            ng-model="newRestaurant.name"
+                            ng-required=true
+                            ng-maxlength=50
+                        />
+                    </div>
+                    <div class="col">
+                        <input
+                            class="form-control"
+                            type="text"
+                            placeholder="location"
+                            ng-model="newRestaurant.location"
+                            ng-required=true
+                            ng-maxlength=50
+                        />
+                    </div>
+                    <div class="col">
+                        <select class="custom-select" ng-model="newRestaurant.price_range" ng-pattern="/\d/">
+                            <option disabled>Price Range</option>
+                            <option value="1">$</option>
+                            <option value="2">$$</option>
+                            <option value="3">$$$</option>
+                            <option value="4">$$$$</option>
+                            <option value="5">$$$$$</option>
+                        </select>
+                    </div>
+                    <button ng-disabled="newRestaurantForm.$invalid" type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr class="bg-primary">
+                        <th scope="col">Restaurant</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Price Range</th>
+                        <th scope="col">Ratings</th>
+                        <th class="d-none d-md-table-cell"  scope="col">Edit</th>
+                        <th class="d-none d-md-table-cell"  scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="rtt in restaurants" ng-click="detail(rtt.id)">
+                        <td>{{ rtt.name }}</td>
+                        <td>{{ rtt.location }}</td>
+                        <td>{{ '$'.repeat(rtt.price_range) }}</td>
+                        <td>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star-half-alt text-warning"></i>
+                            <i class="far fa-star text-warning"></i>
+                            <span class="text-warning">({{ rtt.count }})</span>
+                        </td>
+                        <td class="d-none d-md-table-cell"><button class="btn btn-warning" ng-click="handleUpdateBtn(rtt.id); $event.stopPropagation();">Update</button></td>
+                        <td class="d-none d-md-table-cell"><button class="btn btn-danger" ng-click="handleDeleteBtn(restaurants, rtt.id); $event.stopPropagation();">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
