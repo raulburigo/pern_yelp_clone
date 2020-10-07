@@ -13,6 +13,67 @@ app.use(express.json())
 
 // ENDPOINTS
 
+const contatos = [
+    {
+        id: 1,
+        nome: "Raul Burigo",
+        data: new Date(),
+        telefone: "(48) 99618-8704",
+        operadora: { nome: "Tim", codigo: 41 }
+    },
+    {
+        id: 2,
+        nome: "Ana Zanette",
+        data: new Date(),
+        telefone: "(48) 99848-4159",
+        operadora: { nome: "Tim", codigo: 41 }
+    },
+    {
+        id: 3,
+        nome: "Bruno Burigo",
+        data: new Date(),
+        telefone: "(48) 99966-9385",
+        operadora: { nome: "Vivo", codigo: 15 }
+    },  
+]
+
+let idIncremental = 4
+
+const operadoras = [
+    { nome: "Oi", codigo: 14 },
+    { nome: "Tim", codigo: 41 },
+    { nome: "Vivo", codigo: 15 },
+];
+
+app.get('/api/v1/contatos', (req, res) => {
+    res.status(200).json({
+        contatos
+    });
+});
+
+app.get('/api/v1/operadoras', (req, res) => {
+    res.status(200).json({
+        operadoras
+    });
+});
+
+app.post('/api/v1/contatos', (req, res) => {
+    const { nome, telefone, operadora } = req.body
+    contatos.push(
+        {
+            id: idIncremental, // incremental tosco
+            nome,
+            data: new Date(),
+            telefone,
+            operadora,
+        }
+    );
+    idIncremental += 1;
+    res.status(200).json({
+         data: req.body
+    });
+});
+
 app.get('/api/v1/restaurants', async (req, res) => {
     try {
         const results = await db.query(

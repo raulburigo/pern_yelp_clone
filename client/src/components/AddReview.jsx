@@ -22,9 +22,10 @@ function AddReview() {
         } else {
             try {
                 const result = await RestaurantFinder.post(
-                    `/${restaurantId}/addreview`,
-                    { name, review, rating}
-                )
+                    `/${restaurantId}/addreview/`,
+                    { name, review, rating }
+                    )
+                console.log(result)
                 addReview(result)
             } catch (err) {
                 console.log(err)

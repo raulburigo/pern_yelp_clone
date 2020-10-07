@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import RestaurantFinder from '../apis/RestaurantFinder';
+import { RestaurantContext } from '../context/RestaurantContext';
 
 function UpdateForm() {
     const { id } = useParams();
@@ -9,6 +10,8 @@ function UpdateForm() {
     const [priceRange, setPriceRange] = useState('Price Range');
 
     let history = useHistory();
+
+    const { setIsUpdated } = useContext(RestaurantContext);
 
     useEffect(() => {
         async function fetchData() {
@@ -25,12 +28,13 @@ function UpdateForm() {
     const handleSubmit = async e => {
         e.preventDefault()
         try {
-            await RestaurantFinder.put(`${id}`, {
+            await RestaurantFinder.put(`${id}/`, {
                 name,
                 location,
                 price_range: priceRange
             })
-            history.goBack()
+            setIsUpdated(false)
+            history.push('/')
         } catch (err) {
             console.log(err)
         }

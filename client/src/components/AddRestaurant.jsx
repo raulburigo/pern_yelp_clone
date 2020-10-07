@@ -17,6 +17,7 @@ function AddRestaurant() {
                 location,
                 price_range: priceRange
             })
+            console.log(response)
             addRestaurant(response.data.data.restaurant)
             setName('')
             setLocation('')

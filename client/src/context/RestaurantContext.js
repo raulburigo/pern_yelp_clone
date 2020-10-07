@@ -6,6 +6,7 @@ export const RestaurantContext = createContext();
 export const RestaurantContextProvider = props => {
     const [restaurants, setRestaurants] = useState([])
     const [newReviews, setNewReviews] = useState([])
+    const [isUpdated, setIsUpdated] = useState(true) 
 
     useEffect(() => {
         async function fetchData() {
@@ -13,7 +14,8 @@ export const RestaurantContextProvider = props => {
             setRestaurants(response.data.data.restaurants)
         }
         fetchData().catch(err => console.log(err));
-    }, [setRestaurants])
+        setIsUpdated(true)
+    }, [setRestaurants, isUpdated])
 
     const addRestaurant = restaurant => {
         setRestaurants([...restaurants, restaurant])
@@ -29,7 +31,8 @@ export const RestaurantContextProvider = props => {
             setRestaurants,
             addRestaurant,
             addReview,
-            newReviews
+            newReviews,
+            setIsUpdated,
         }}>
             {props.children}
         </RestaurantContext.Provider>
