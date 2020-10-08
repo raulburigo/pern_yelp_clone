@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="my-3 text-center">
+        <h1 class="font-weight-light display-3">Restaurant Finder</h1>
+    </div>
+    <div class="mb-4">
+        <form ng-submit="handleSubmitBtn(newRestaurant)" name="newRestaurantForm">
+            <div class="form-row mx-auto">
+                <div class="col">
+                    <input
+                        class="form-control"
+                        type="text"
+                        placeholder="name"
+                        ng-model="newRestaurant.name"
+                        ng-required=true
+                        ng-maxlength=50
+                    />
+                </div>
+                <div class="col">
+                    <input
+                        class="form-control"
+                        type="text"
+                        placeholder="location"
+                        ng-model="newRestaurant.location"
+                        ng-required=true
+                        ng-maxlength=50
+                    />
+                </div>
+                <div class="col">
+                    <select class="custom-select" ng-model="newRestaurant.price_range" ng-pattern="/\d/">
+                        <option disabled>Price Range</option>
+                        <option value="1">$</option>
+                        <option value="2">$$</option>
+                        <option value="3">$$$</option>
+                        <option value="4">$$$$</option>
+                        <option value="5">$$$$$</option>
+                    </select>
+                </div>
+                <button ng-disabled="newRestaurantForm.$invalid" type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr class="bg-primary">
+                    <th scope="col">Restaurant</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Price Range</th>
+                    <th scope="col">Ratings</th>
+                    <th class="d-none d-md-table-cell"  scope="col">Edit</th>
+                    <th class="d-none d-md-table-cell"  scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="rtt in restaurants" ng-click="detail(rtt.id)">
+                    <td>{{ rtt.name }}</td>
+                    <td>{{ rtt.location }}</td>
+                    <td>{{ '$'.repeat(rtt.price_range) }}</td>
+                    <td>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star-half-alt text-warning"></i>
+                        <i class="far fa-star text-warning"></i>
+                        <span class="text-warning">({{ rtt.count }})</span>
+                    </td>
+                    <td class="d-none d-md-table-cell"><button class="btn btn-warning" ng-click="handleUpdateBtn(rtt.id); $event.stopPropagation();">Update</button></td>
+                    <td class="d-none d-md-table-cell"><button class="btn btn-danger" ng-click="handleDeleteBtn(restaurants, rtt.id); $event.stopPropagation();">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
