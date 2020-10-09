@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="my-3 text-center">
+        <h1 class="font-weight-light display-3">Update Restaurant</h1>
+    </div>
+    <div>
+        <form name="updateForm" ng-submit="updateRestaurant(restaurant)">
+            <div class="form">
+                <div class="form-row mb-2">
+                    <label for="">Name</label>
+                    <input
+                        class="form-control"
+                        type="text"
+                        placeholder="name"
+                        ng-model="restaurant.name"
+                        ng-required=true
+                        ng-maxlength=50
+                    />
+                </div>
+                <div class="form-row mb-2">
+                    <label for="">Location</label>
+                    <input
+                        class="form-control"
+                        type="text"
+                        placeholder="location"
+                        ng-model="restaurant.location"
+                        ng-required=true
+                        ng-maxlength=50
+                    />
+                </div>
+                <div class="form-row mb-2">
+                    <label for="">Price Range</label>
+                    <select
+                        class="custom-select"
+                        ng-model="restaurant.price_range"
+                        ng-options="option.value as option.display disable when option.disabled for option in priceOptions"
+                    >
+                    </select>
+                </div>
+                <button type="submit" ng-disabled="updateForm.$invalid" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

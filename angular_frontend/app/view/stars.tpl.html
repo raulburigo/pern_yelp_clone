@@ -1,0 +1,15 @@
+<div>
+    <div ng-if=rating class="text-warning">
+        <i ng-class="{'fas fa-star': filled(rating, 1), 'far fa-star': !filled(rating, 1)}"></i>
+        <i ng-class="{'fas fa-star': filled(rating, 2), 'far fa-star': !filled(rating, 2)}"></i>
+        <i ng-class="{'fas fa-star': filled(rating, 3), 'far fa-star': !filled(rating, 3)}"></i>
+        <i ng-class="{'fas fa-star': filled(rating, 4), 'far fa-star': !filled(rating, 4)}"></i>
+        <i ng-class="{'fas fa-star': filled(rating, 5), 'far fa-star': !filled(rating, 5)}"></i>
+        <span ng-show="count">({{ count }})</span>
+    </div>
+    <div ng-hide=rating>
+        <span class="text-warning">no reviews yet</span>
+    </div>
+</div>
+
+<!-- halfFullStar class="fas fa-star-half-alt" -->

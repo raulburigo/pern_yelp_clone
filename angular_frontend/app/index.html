@@ -2,19 +2,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.1/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.8.0/angular-locale_pt-br.min.js"></script>
+    <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+    <!-- próprio -->
+    <script src="js/yelp.module.js"></script>
+    <script src="js/yelp.routes.js"></script>
+    <script src="js/controllers/session.cotroller.js"></script>
+    <script src="js/controllers/restaurants.controller.js"></script>
+    <script src="js/controllers/auth.controller.js"></script>
+    <script src="js/controllers/restaurantdetail.controller.js"></script>
+    <script src="js/controllers/restaurantupdate.controller.js"></script>
+    <script src="js/utils/constants.js"></script>
+    <script src="js/services/authAPI.services.js"></script>
+    <script src="js/services/restaurantsAPI.service.js"></script>
     <script src="js/directives/navbar.directive.js"></script>
+    <script src="js/directives/stars.directive.js"></script>
     <title>Yelp - AngularJS</title>
     
 </head>
 <body class="html" ng-controller="sessionCtrl">
     <ui-navbar></ui-navbar>
-    <div ng-view></div>
+    <ng-view></ng-view>
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

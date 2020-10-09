@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="my-3 text-center">
+        <h1 class="font-weight-light display-3">{{ restaurant.name }}</h1>
+        <stars-component rating={{restaurant.avg_rating}} count={{restaurant.reviewsCount}}></stars-component>
+        <h6>{{restaurant.location}} - {{'$'.repeat(restaurant.price_range)}}</h6>
+        <button ng-click="updateBtn()" class="btn btn-sm btn-outline-dark my-2">update restaurant</button>
+    </div>
+    <div class="row row-cols-3 mb-2">
+        <div ng-repeat="rev in restaurant.reviews" class="card text-white bg-primary mb-3 mr-4" style="max-width: 30%">
+            <div class="card-header">
+                <h5 class="card-title">{{ rev.name }}</h5>
+                <stars-component rating={{rev.rating}}></stars-component>
+                <!-- <span style="font-weight: 600">{{ rev.name }}</span> -->
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ rev.review }}</p>    
+            </div>
+        </div>
+    </div>
+    <div class="mb-2" ng-show="user">
+        <form ng-submit="addreview(newReview)">
+            <h2 class="border-bottom">New Review</h2>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label htmlFor="rating">Rating</label>
+                    <div>
+                        <span><i ng-click="newReview.rating = 1;" ng-class="{'fas fa-star': filled(newReview.rating, 1), 'far fa-star': !filled(newReview.rating, 1)}"></i></span>
+                        <span><i ng-click="newReview.rating = 2;" ng-class="{'fas fa-star': filled(newReview.rating, 2), 'far fa-star': !filled(newReview.rating, 2)}"></i></span>
+                        <span><i ng-click="newReview.rating = 3;" ng-class="{'fas fa-star': filled(newReview.rating, 3), 'far fa-star': !filled(newReview.rating, 3)}"></i></span>
+                        <span><i ng-click="newReview.rating = 4;" ng-class="{'fas fa-star': filled(newReview.rating, 4), 'far fa-star': !filled(newReview.rating, 4)}"></i></span>
+                        <span><i ng-click="newReview.rating = 5;" ng-class="{'fas fa-star': filled(newReview.rating, 5), 'far fa-star': !filled(newReview.rating, 5)}"></i></span>
+                        <input ng-hide="true" ng-required type="text" ng-model="newReview.rating">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label htmlFor="review">Review</label>
+                <textarea required id="review" ng-model="newReview.review" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-small">Add Review</button>
+        </form>
+    </div>
+</div>

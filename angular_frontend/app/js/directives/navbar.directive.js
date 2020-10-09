@@ -1,7 +1,7 @@
 angular.module('yelpClone')
     .directive('uiNavbar', function () {
         return {
-            templateUrl: 'view/navbar.html',
+            templateUrl: 'view/navbar.tpl.html',
             replace: true,
             restrict: 'E'
         }
